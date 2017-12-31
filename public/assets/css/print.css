@@ -1,0 +1,36 @@
+/**
+ * Print stylesheet for yourwebsite.com
+* @version         1.0
+* @lastmodified    16.06.2016
+*/
+ 
+@media print {
+
+   /** Setting margins */       
+	@page { margin: 1cm }
+
+	#content{
+		margin: 0 !important;
+	}
+
+	header#header, .ph, #nav-panel, #content header:first-child{
+		display: none !important;
+	}
+
+	a[rel=formOpen], form, button, a.btn{
+		display: none !important;
+	}
+
+	.nh{
+		display: block;
+	}
+
+	footer#footer{
+		display: none;
+	}
+
+	.table-wrap{
+		overflow: visible;
+		max-height: auto;
+	}
+}
