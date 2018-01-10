@@ -32,6 +32,31 @@ class LoginController extends Controller
     {
         return 'email';
     }
+    
+    public function showLoginForm()
+    {	
+    	if(empty(User::all()->toArray()) && empty(Setting::all()->toArray())){
+    		$settingData = [];
+    		$settingData['from'] = date('Y').'-1-1';
+    		$settingData['to'] = date('Y').'-12-1';
+    		$settingData['status'] = 'year';
+    		$settingData['months'] = 12;
+
+    		$setting = Setting::create($settingData);
+
+    		$userData = [];
+    		$userData['name'] = 'IT Officer';
+    		$userData['email'] = 'it@talalcontracting.com';
+    		$userData['password'] = '$2y$10$ucv7ZvY/h4Kr/v7x7048zuimA3hX0k4cTdQKAV/hobyOhrsemf.ee';
+    		$userData['admin'] = 'admin';
+    		$userData['role'] = 'admin';
+
+    		$user = User::create($userData);
+    	}
+    	
+    	return view('auth.login');
+    }
+    
     /**
      * Create a new controller instance.
      *
