@@ -2254,7 +2254,7 @@ body.login #main > header {
 body.login #main > header h1 {
   text-indent: -9999px;
   width: 200px;
-  height: 150px;
+  height: 200px;
   position: absolute;
   top: 50%;
   left: 50%;
