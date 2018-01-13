@@ -1,7 +1,7 @@
 @extends('skel')
 
 @section('title')
-Login | Talal Contracting Co.
+Login | Property Management System
 @endsection
 
 @section('body-class')
@@ -10,7 +10,7 @@ login
 
 @section('content')
     <header>
-       <h1>Talal Contracting Company</h1>
+       <h1>Property Management System</h1>
     </header>
     <div id="login-form">
         <form class="clearfix" role="form" method="POST" action="{{ route('login') }}">
@@ -45,7 +45,7 @@ login
             {!! Form::submit('Let me in.'); !!}
         </form>
 
-        <p>&copy; Copyright {{date('Y')}} Talal Trading & Contracting Co.</p>
+        <p>&copy; Copyright {{date('Y')}} Property Management System</p>
     </div>
 @endsection
 
