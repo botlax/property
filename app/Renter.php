@@ -12,7 +12,7 @@ class Renter extends Model
 	protected $table = 'renter';
 
 	protected $fillable = [
-        'name', 'contract', 'email', 'prop_id', 'qid', 'prev', 'cr', 'permit', 'mobile', 'address', 'company', 'co_address', 'co_person', 'co_mobile', 'co_contact'
+        'name', 'contract', 'p_contract', 'email', 'prop_id', 'qid', 'prev', 'cr', 'permit', 'mobile', 'address', 'company', 'co_address', 'co_person', 'co_mobile', 'co_contact'
     ];
 
     public $timestamps = false;
@@ -47,6 +47,10 @@ class Renter extends Model
 
     public function getContractFileAttribute(){
         return str_replace(url('storage'), 'public', $this->contract);
+    }
+
+    public function getPcontractFileAttribute(){
+        return str_replace(url('storage'), 'public', $this->p_contract);
     }
 
 }
