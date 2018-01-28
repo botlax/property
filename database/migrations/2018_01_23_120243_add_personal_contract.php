@@ -13,7 +13,7 @@ class AddPersonalContract extends Migration
      */
     public function up()
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('renter', function (Blueprint $table) {
             $table->string('p_contract',200)->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddPersonalContract extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('renter', function (Blueprint $table) {
             $table->dropColumn(['p_contract']);
         });
     }
