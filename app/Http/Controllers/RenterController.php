@@ -59,6 +59,7 @@ class RenterController extends Controller
             'email' => 'nullable|email:users,email',
             'qid' => 'nullable|mimes:pdf,jpg,jpeg,png|max:2048',
             'contract' => 'nullable|mimes:pdf,jpg,jpeg,doc,docx|max:2048',
+            'p_contract' => 'nullable|mimes:pdf,jpg,jpeg,doc,docx|max:2048',
             'cr' => 'nullable|mimes:pdf,jpg,jpeg,png|max:2048',
             'permit' => 'nullable|mimes:pdf,jpg,jpeg,png|max:2048',
             'properties' => 'nullable',
@@ -104,6 +105,13 @@ class RenterController extends Controller
         if($contract){
             $contract->storeAs('public/contract/renter/',$renter->id.'.'.$contract->getClientOriginalExtension());
             $renter->contract = url('storage/contract/renter/').'/'.$renter->id.'.'.$contract->getClientOriginalExtension();
+        }
+
+        $p_contract = $request->file('p_contract');
+
+        if($p_contract){
+            $p_contract->storeAs('public/p_contract/renter/',$renter->id.'.'.$p_contract->getClientOriginalExtension());
+            $renter->p_contract = url('storage/p_contract/renter/').'/'.$renter->id.'.'.$p_contract->getClientOriginalExtension();
         }
 
         $renter->save();
@@ -173,6 +181,10 @@ class RenterController extends Controller
                 case 'contract':
                     Storage::delete($renter->contractFile);
                     $renter->contract = null;
+                    break;
+                case 'p_contract':
+                    Storage::delete($renter->pcontractFile);
+                    $renter->p_contract = null;
                     break;
                 case 'email':
                     $renter->email = null;
@@ -286,6 +298,18 @@ class RenterController extends Controller
                     $contract->storeAs('public/contract/renter/',$renter->id.'.'.$contract->getClientOriginalExtension());
 
                     $renter->contract = url('storage/contract/renter/').'/'.$renter->id.'.'.$contract->getClientOriginalExtension();
+                    break;
+                case 'p_contract':
+                    $this->validate($request,[
+                        'p_contract' => 'max:2048|required|mimes:pdf,jpg,jpeg',
+                    ],[
+                        'p_contract.mimes' => 'Only pdf & jpg are allowed'
+                    ]);
+
+                    $p_contract = $request->file('p_contract');
+                    $p_contract->storeAs('public/p_contract/renter/',$renter->id.'.'.$p_contract->getClientOriginalExtension());
+
+                    $renter->p_contract = url('storage/p_contract/renter/').'/'.$renter->id.'.'.$p_contract->getClientOriginalExtension();
                     break;
                 case 'cr':
                     $this->validate($request,[
