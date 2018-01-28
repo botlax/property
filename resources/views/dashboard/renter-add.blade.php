@@ -110,10 +110,18 @@ Add Renter | {{config('app.name')}}
 			</div>
 
 			<div class="form-group">
-				{!! Form::label('contract','Contract') !!}
+				{!! Form::label('contract','Government Contract') !!}
 			    {!! Form::file('contract',old('contract'),['class' => 'form-control-file']) !!}
 			    @if ($errors->has('contract'))
 	                <div class="invalid-feedback">{{ $errors->first('contract') }}</div>
+	            @endif
+			</div>
+
+			<div class="form-group">
+				{!! Form::label('p_contract','Renter Contract') !!}
+			    {!! Form::file('p_contract',old('p_contract'),['class' => 'form-control-file']) !!}
+			    @if ($errors->has('p_contract'))
+	                <div class="invalid-feedback">{{ $errors->first('p_contract') }}</div>
 	            @endif
 			</div>
 
