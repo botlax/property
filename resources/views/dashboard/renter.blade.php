@@ -449,7 +449,7 @@
 				@endif
 			</li>
 
-			<li><span class="field-title">Contract: </span>
+			<li><span class="field-title">Government Contract: </span>
 				@if($renter->contract)
 					
 					<a href="{{$renter->contract}}" target="_blank">Download <i class="fa fa-download"></i></a>
@@ -479,6 +479,44 @@
 							{!! Form::file('contract',old('contract')) !!}
 							@if ($errors->has('contract'))
 				                <div class="invalid-feedback">{{ $errors->first('contract') }}</div>
+				            @endif
+							<button class="btn btn-primary">Add</button>
+						{!! Form::close() !!}
+					</div>
+					
+				@endif
+			</li>
+
+			<li><span class="field-title">Renter Contract: </span>
+				@if($renter->p_contract)
+					
+					<a href="{{$renter->p_contract}}" target="_blank">Download <i class="fa fa-download"></i></a>
+					<div class="file-form-wrap">
+						{!! Form::model($renter,['route' => ['renter-update', $renter->id],'class' => 'editForm','files' => true]) !!}
+							{!! Form::hidden('field', 'p_contract') !!}
+							{!! Form::hidden('process', 'update') !!}
+							{!! Form::file('p_contract',old('p_contract')) !!}
+							@if ($errors->has('p_contract'))
+				                <div class="invalid-feedback">{{ $errors->first('p_contract') }}</div>
+				            @endif
+							<button class="btn btn-primary">Update</button>
+						{!! Form::close() !!}
+						{!! Form::open(['route' => ['renter-update', $renter->id],'class' => 'deleteForm']) !!}
+							{!! Form::hidden('field', 'p_contract') !!}
+							{!! Form::hidden('process', 'delete') !!}
+							<button class="btn btn-danger" title="delete"><i class="fa fa-close"></i></button>
+						{!! Form::close() !!}
+					</div>
+					
+				@else
+					<p>No file yet. Use the form on the right to add QID.</p>
+					<div class="file-form-wrap">
+						{!! Form::open(['route' => ['renter-update', $renter->id],'class' => 'addForm','files' => true]) !!}
+							{!! Form::hidden('field', 'p_contract') !!}
+							{!! Form::hidden('process', 'add') !!}
+							{!! Form::file('p_contract',old('p_contract')) !!}
+							@if ($errors->has('p_contract'))
+				                <div class="invalid-feedback">{{ $errors->first('p_contract') }}</div>
 				            @endif
 							<button class="btn btn-primary">Add</button>
 						{!! Form::close() !!}
